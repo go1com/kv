@@ -48,7 +48,7 @@ class KV
     {
         return $this
             ->read
-            ->fetchColumn("SELECT v FROM {$this->tableName} WHERE k = ?", [$key]) ? true : false;
+            ->fetchColumn("SELECT 1 FROM {$this->tableName} WHERE k = ?", [$key]) ? true : false;
     }
 
     public function fetch($key)
@@ -57,7 +57,7 @@ class KV
             ->read
             ->fetchColumn("SELECT v FROM {$this->tableName} WHERE k = ?", [$key]);
 
-        if (!$value) {
+        if (!isset($value) || $value === '') {
             throw new NotFoundException();
         }
 
