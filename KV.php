@@ -48,7 +48,7 @@ class KV
     {
         return $this
             ->read
-            ->fetchColumn("SELECT 1 FROM {$this->tableName} WHERE k = ?", [$key]) ? true : false;
+            ->fetchColumn("SELECT v FROM {$this->tableName} WHERE k = ?", [$key]) ? true : false;
     }
 
     public function fetch($key)
