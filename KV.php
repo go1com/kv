@@ -4,6 +4,7 @@ namespace go1\kv;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
+use InvalidArgumentException;
 
 class KV
 {
@@ -66,6 +67,10 @@ class KV
 
     public function save($key, $value)
     {
+        if ($value === NULL || $value === '') {
+            throw new InvalidArgumentException();
+        }
+
         $update = $this->has($key);
         $value = is_scalar($value) ? $value : serialize($value);
 
