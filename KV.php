@@ -4,6 +4,7 @@ namespace go1\kv;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
+use InvalidArgumentException;
 
 class KV
 {
@@ -57,7 +58,7 @@ class KV
             ->read
             ->fetchColumn("SELECT v FROM {$this->tableName} WHERE k = ?", [$key]);
 
-        if (!$value) {
+        if ($value === FALSE || $value === NULL || $value === '') {
             throw new NotFoundException();
         }
 
@@ -66,6 +67,10 @@ class KV
 
     public function save($key, $value)
     {
+        if ($value === NULL || $value === '') {
+            throw new InvalidArgumentException();
+        }
+
         $update = $this->has($key);
         $value = is_scalar($value) ? $value : serialize($value);
 
