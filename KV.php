@@ -57,7 +57,7 @@ class KV
             ->read
             ->fetchColumn("SELECT v FROM {$this->tableName} WHERE k = ?", [$key]);
 
-        if (!$value) {
+        if (false === $value) {
             throw new NotFoundException();
         }
 
