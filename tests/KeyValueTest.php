@@ -38,6 +38,15 @@ class KeyValueTest extends PHPUnit_Framework_TestCase
         return $k;
     }
 
+    public function testSaveEmpty()
+    {
+        $result = $this->kv->save($k = 'foo', $v = '');
+
+        $this->assertEquals(1, $result);
+        $this->assertTrue($this->kv->has('foo'));
+        $this->assertEquals($v, $this->kv->fetch($k));
+    }
+
     /**
      * @expectedException \go1\kv\NotFoundException
      */
