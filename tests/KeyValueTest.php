@@ -5,9 +5,9 @@ namespace go1\kv\tests;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
 use go1\kv\KV;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class KeyValueTest extends PHPUnit_Framework_TestCase
+class KeyValueTest extends TestCase
 {
     /** @var  Connection */
     private $read;

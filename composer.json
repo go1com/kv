@@ -1,9 +1,11 @@
 {
   "name": "go1/kv",
-  "license": "MIT",
   "require": {
     "doctrine/dbal": "^2.5.4"
   },
+  "license" : [
+    "MIT"
+  ],
   "autoload": {
     "psr-4": {
       "go1\\kv\\": "./"
